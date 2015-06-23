@@ -2,6 +2,8 @@
   "name": "responsive-gallery",
   "version": "1.0.0",
   "dependencies": {
+    "zepto": "~1.1.6",
+    "hammerjs": "~2.0.4"
   },
   "devDependencies": {}
 }
