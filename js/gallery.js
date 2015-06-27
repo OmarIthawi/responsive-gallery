@@ -21,7 +21,7 @@
 
       for (var i=0; i < thumbs.length; i+=1) {
         toggleActiveClass(thumbs[i], i);
-        toggleActiveClass(images[i], i); // Both `.thumb` and `.image`
+        toggleActiveClass(images[i], i); // Both `.thumbs` and `.images`
                                          // have the same number of elements
       }
     };
