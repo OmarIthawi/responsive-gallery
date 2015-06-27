@@ -1,44 +1,8 @@
 ;(function() {
-  var utils = {
-    getElementIndex: function (elem) {
-      var siblings = elem.parentElement.children
-
-      for (var i=0; i < siblings.length; i+=1) {
-        if (siblings[i] === elem) {
-          return i;
-        }
-      }
-
-      return -1;
-    },
-    addClassToElement: function(elem, value) {
-      var rspaces = /\s+/;
-      var classNames = (value || "").split(rspaces);
-      var className = " " + elem.className + " ",
-        setClass = elem.className;
-      for (var c = 0, cl = classNames.length; c < cl; c++) {
-        if (className.indexOf(" " + classNames[c] + " ") < 0) {
-          setClass += " " + classNames[c];
-        }
-      }
-      elem.className = setClass.replace(/^\s+|\s+$/g, ''); //trim
-    },
-    removeClassFromElement: function(elem, value) {
-      var rspaces = /\s+/;
-      var rclass = /[\n\t]/g
-      var classNames = (value || "").split(rspaces);
-      var className = (" " + elem.className + " ").replace(rclass, " ");
-      for (var c = 0, cl = classNames.length; c < cl; c++) {
-        className = className.replace(" " + classNames[c] + " ", " ");
-      }
-      elem.className = className.replace(/^\s+|\s+$/g, ''); //trim
-    }
-  };
-
   var gallery = function(elem) {
     var activeImageIndex = 0;
-    var thumbs = elem.querySelectorAll('.thumb');
-    var images = elem.querySelectorAll('.image');
+    var thumbs = elem.querySelector('.thumbs').children;
+    var images = elem.querySelector('.images').children;
 
     var activateImage = function(index) {
       if (!thumbs[index]) {
@@ -49,15 +13,16 @@
 
       var toggleActiveClass = function(el, i) {
         if (i === index) {
-          utils.addClassToElement(el, 'active');
+          el.className = 'active';
         } else {
-          utils.removeClassFromElement(el, 'active');
+          el.className = '';
         }
       };
 
       for (var i=0; i < thumbs.length; i+=1) {
         toggleActiveClass(thumbs[i], i);
-        toggleActiveClass(images[i], i);
+        toggleActiveClass(images[i], i); // Both `.thumb` and `.image`
+                                         // have the same number of elements
       }
     };
 
@@ -75,7 +40,14 @@
 
     for (var i=0; i < thumbs.length; i+=1) {
       var onThumbClick = function () {
-        return activateImage(utils.getElementIndex(this));
+        var siblings = this.parentElement.children;
+
+        for (var i=0; i < siblings.length; i+=1) {
+          if (siblings[i] === this) {
+            activateImage(i);
+            return;
+          }
+        }
       };
 
       thumbs[i].addEventListener('click', onThumbClick, false);
