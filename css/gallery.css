@@ -49,8 +49,7 @@
   border: 3px solid transparent;
   width: 100px;
   height: 100px;
-
-  cursor: pointer;
+: pointer;
 }
 
 .gallery .thumbs .thumb:before {

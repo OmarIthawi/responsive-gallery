@@ -16,11 +16,6 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/gallery.css">
   <link rel="stylesheet" href="css/main.css">
-
-  <script src="bower_components/zepto/zepto.js"></script>
-  <script src="bower_components/hammerjs/hammer.js"></script>
-  <script src="js/gallery.js"></script>
-  <script src="js/main.js"></script>
 </head>
 
 <body>
@@ -55,7 +50,7 @@
         </section>
         <section>
           <h2>Images</h2>
-          <div class="gallery">
+          <div id="mygallery" class="gallery">
             <div class="images">
               <div class="image active">
                 <div class="content" style="background-image: url(img/01.jpg)"></div>
@@ -77,6 +72,9 @@
               <div class="thumb" style="background-image: url(img/04.jpg)"></div>
             </div>
           </div>
+        </section>
+        <section>
+          <pre id="log">Swipe here and I will log my swipes</pre>
         </section>
         <footer>
           <h3>article footer h3</h3>
@@ -102,6 +100,8 @@
     </footer>
   </div>
 
+  <script src="bower_components/hammerjs/hammer.js"></script>
+  <script src="js/gallery.js"></script>
   <script src="js/main.js"></script>
 
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

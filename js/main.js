@@ -1,3 +1,1 @@
-$(function () {
-  $('.gallery').gallery();
-});
+Gallery(document.getElementById('mygallery'));
