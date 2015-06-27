@@ -74,9 +74,11 @@
 
 
     for (var i=0; i < thumbs.length; i+=1) {
-      thumbs[i].addEventListener('click', function () {
+      var onThumbClick = function () {
         return activateImage(utils.getElementIndex(this));
-      }, false);
+      };
+
+      thumbs[i].addEventListener('click', onThumbClick, false);
     }
   };
 
