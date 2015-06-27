@@ -1,2 +1,2 @@
 all:
-	browser-sync start --server --files "**/*.html, **/*.css, **/*.js"
+	nodejs ./node_modules/.bin/gulp

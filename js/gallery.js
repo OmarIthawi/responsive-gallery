@@ -1,8 +1,9 @@
 ;(function() {
-  var gallery = function(elem) {
+  'use strict';
+  var init = function (elem) {
     var activeImageIndex = 0;
-    var thumbs = elem.querySelector('.thumbs').children;
-    var images = elem.querySelector('.images').children;
+    var thumbs = elem.querySelector('.thumbs').querySelectorAll('div');
+    var images = elem.querySelector('.images').querySelectorAll('div');
 
     var activateImage = function(index) {
       if (!thumbs[index]) {
@@ -29,30 +30,29 @@
 
     var imagesHammer = new Hammer(elem.querySelector('.images'));
 
-    imagesHammer.on('swipeleft', function(e) {
+    imagesHammer.on('swipeleft', function () {
       activateImage(activeImageIndex + 1);
     });
 
-    imagesHammer.on('swiperight', function(e) {
+    imagesHammer.on('swiperight', function () {
       activateImage(activeImageIndex - 1);
     });
 
+    var onThumbClick = function () {
+      for (var i=0; i < thumbs.length; i+=1) {
+        if (thumbs[i] === this) {
+          activateImage(i);
+          return;
+        }
+      }
+    };
 
     for (var i=0; i < thumbs.length; i+=1) {
-      var onThumbClick = function () {
-        var siblings = this.parentElement.children;
-
-        for (var i=0; i < siblings.length; i+=1) {
-          if (siblings[i] === this) {
-            activateImage(i);
-            return;
-          }
-        }
-      };
-
       thumbs[i].addEventListener('click', onThumbClick, false);
     }
   };
 
-  window.Gallery = gallery;
+  window.Gallery = {
+    init: init
+  };
 }());

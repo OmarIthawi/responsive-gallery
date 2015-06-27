@@ -1,1 +1,4 @@
-Gallery(document.getElementById('mygallery'));
+;(function () {
+  'use strict';
+  Gallery.init(document.getElementById('mygallery'));
+}());

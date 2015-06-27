@@ -1,0 +1,99 @@
+.gallery {
+  @screen-sm-max: 768px;
+
+  .images {
+
+    // Responsive image size: the wrapper
+    position: relative;
+    width: 100%;
+    padding-bottom: 60%;
+    height: 0;
+
+    // Image element
+    > div,
+    > span {
+      // The left and right arrows
+      // Responsive image (and span) size
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    // Image styles
+    > div {
+      opacity: 0;
+      background: center no-repeat;
+      background-size: cover;
+      border-radius: 3px;
+      box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+      transition: all 0.88s ease;
+      &.active {
+        opacity: 1;
+      }
+    }
+
+    // The arrows
+    > span {
+      color: white;
+      font-size: 50px;
+      &.left:before {
+        content: "\00BB";
+      }
+      &.right:before {
+        content: "\00AB";
+      }
+    }
+  }
+
+  // The thumbnails container
+  .thumbs {
+    margin-top: 10px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+
+    // Thumbnail element
+    > div {
+      box-sizing: border-box;
+      background: center no-repeat;
+      background-size: cover;
+      display: inline-block;
+      position: relative;
+      margin: 4px;
+      border: 3px solid transparent;
+      width: 100px;
+      height: 100px;
+      cursor: pointer;
+      transition: all 0.88s ease;
+
+      @media (max-width: @screen-sm-max) {
+        width: 65px;
+        height: 65px;
+      }
+
+      &:before {
+        content: '';
+        width: 0;
+        height: 0;
+        border: solid transparent;
+        border-width: 0 5px 5px 5px;
+        position: absolute;
+        left: 45px;
+        top: -8px;
+        transition: all 0.88s ease;
+
+        @media (max-width: @screen-sm-max) {
+          left: 25px;
+        }
+      }
+      &.active {
+        border-color: silver;
+        &:before {
+          border-bottom-color: silver;
+        }
+      }
+    }
+  }
+}
