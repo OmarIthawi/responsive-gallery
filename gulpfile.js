@@ -30,7 +30,7 @@ gulp.task('styles', function(){
         this.emit('end');
     }}))
     .pipe(less())
-    .pipe(autoprefixer('last 2 versions'))
+    .pipe(autoprefixer('> 0.1%', 'last 10 versions', 'ie >= 7'))
     .pipe(gulp.dest('dist/css/'))
     .pipe(rename({suffix: '.min'}))
     .pipe(minifycss())

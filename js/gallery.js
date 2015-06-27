@@ -27,16 +27,21 @@
       }
     };
 
+    var showPrev = function () {
+      activateImage(activeImageIndex - 1);
+    };
+
+    var showNext = function () {
+      activateImage(activeImageIndex + 1);
+    };
+
+    elem.querySelector('span.left').addEventListener('click', showPrev, false);
+    elem.querySelector('span.right').addEventListener('click', showNext, false);
 
     var imagesHammer = new Hammer(elem.querySelector('.images'));
 
-    imagesHammer.on('swipeleft', function () {
-      activateImage(activeImageIndex + 1);
-    });
-
-    imagesHammer.on('swiperight', function () {
-      activateImage(activeImageIndex - 1);
-    });
+    imagesHammer.on('swipeleft', showNext);
+    imagesHammer.on('swiperight', showPrev);
 
     var onThumbClick = function () {
       for (var i=0; i < thumbs.length; i+=1) {
