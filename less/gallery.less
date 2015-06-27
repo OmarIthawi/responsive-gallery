@@ -37,24 +37,28 @@
     > span {
       cursor: pointer;
       @my-width: 50px;
+      @my-char-width: 28px;
+      @my-spacing: 10px;
+
       width: @my-width;
 
       color: white;
       text-shadow: 0 0 5px black;
       font-size: @my-width;
       height: 100%;
+      line-height: 44px;
 
       &.right {
         left: 100%;
-        margin-left: (-@my-width*3/4);
+        margin-left: -(@my-char-width + @my-spacing);
       }
 
       &.left {
-        padding-left: (@my-width*1/4);
+        padding-left: @my-spacing;
       }
 
       &:before {
-        margin-top: (-@my-width*1/4);
+        margin-top: (-@my-width/2);
         top: 50%;
         position: absolute;
         bottom: 0;
